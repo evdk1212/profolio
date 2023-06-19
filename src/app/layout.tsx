@@ -11,10 +11,8 @@ import { cn } from './lib/utils'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'ProFolio',
-  description: 'Create Industry Acceptable Resume',
-  manifest:'/manifest.json',
-  shorticon:""
+  title: 'FolioMaster',
+  description: 'Create professional resumes with ease using ProFolio, the ultimate resume builder app.',
 }
 
 export default function RootLayout({
