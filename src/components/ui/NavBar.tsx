@@ -7,7 +7,7 @@ import { NavMenu } from "./NavMenu";
 
 const NavBar= async()=>{
     const session = await getAuthSession()
-    return <div className="fixed top-0 inset-x-0 h-fit bg-black border-b border-zinc-700 z-[10] py-4  " >
+    return <div className="fixed top-0 inset-x-0 h-fit bg-black border-b border-zinc-700 z-[10] py-6  " >
             <div className="container max-w-7xl h-full mx-auto flex items-center justify-between gap-2">
                 <Link href={'/'} className="flex gap-2 items-center">
                     <Icons.logo className={"h-8 w-8 sm:h-6 sm:w-6"}/>
