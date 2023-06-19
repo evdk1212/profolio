@@ -13,6 +13,8 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'ProFolio',
   description: 'Create Industry Acceptable Resume',
+  manifest:'/manifest.json',
+  shorticon:""
 }
 
 export default function RootLayout({
@@ -26,6 +28,11 @@ export default function RootLayout({
     
     
     <html lang="en" className={cn('bg-black antialiased light',inter.className)}>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-icon.png"></link>
+      </head>
       <body className={'min-h-screen pt-12 bg-black antialiased'}>
         <NavBar/>
         {authModel}
