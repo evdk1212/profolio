@@ -30,7 +30,7 @@ export const UserAuthForm:FC<UserAuthFormProps> = ({className,...props}) => {
         }
     }
   return  <div className={cn('flex justify-center',className)}{...props}>
-    <Button onClick={loginWithGoogle} isLoading={isLoading} size='sm' className={cn(buttonVariants({variant:'outline'}),'w-full')} >{isLoading?null:<Icons.google className='mx-1 h-4 w-4'/>}Google</Button>
+    <Button onClick={loginWithGoogle} isLoading={isLoading} size='sm' className={cn(buttonVariants({variant:'outline'}),'w-full text-black')} >{isLoading?null:<Icons.google className='mx-1 h-4 w-4'/>}Google</Button>
     </div>
   
 }
