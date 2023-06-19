@@ -47,7 +47,7 @@ const components: { title: string; href: string; description: string; }[] = [
 
 export async function NavMenu() {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="hidden md:block">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Resume Templates</NavigationMenuTrigger>
