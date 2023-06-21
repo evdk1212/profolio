@@ -78,5 +78,5 @@ module.exports = withMT({
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography'), require("daisyui")],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 })

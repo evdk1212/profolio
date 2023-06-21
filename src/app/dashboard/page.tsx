@@ -6,6 +6,11 @@ import React from 'react'
 import { cn } from '../lib/utils'
 import { Stepper, Step, Typography } from "@material-tailwind/react";
 import { Briefcase, Code, Newspaper, Paperclip, School, User2 } from 'lucide-react'
+import { PersonalDetailsFormDesktop } from '@/components/ui/forms/desktop/PersonalDetailsFormDesktop'
+import { PersonalDetailsFormMobile } from '@/components/ui/forms/mobile/PersonalDetailsFormMobile'
+import { Badge } from '@/components/shadecnui/badge'
+import { Avatar } from '@radix-ui/react-avatar'
+import { SummaryDetailsForm } from '@/components/ui/forms/summaryDetailsForm'
 
 const page = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -88,87 +93,13 @@ const page = () => {
             </div>
           </Step>
         </Stepper>
-        <div className={`${activeStep == 0 ? 'mt-14 text-white flex flex-col w-full justify-center' : 'hidden '}`}>
-          <div className='flex flex-row justify-center'>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Your Name</span>
-              </label>
-              <label className="input-group">
-                <span>Name</span>
-                <input type="text" placeholder="Name here" className="input input-bordered" />
-              </label>
-            </div>
-            <div className="form-control ml-2">
-              <label className="label">
-                <span className="label-text">Your Email</span>
-              </label>
-              <label className="input-group">
-                <span>Email</span>
-                <input type="text" placeholder="info@site.com" className="input input-bordered" />
-              </label>
-            </div>
-            <div className="form-control ml-2">
-              <label className="label">
-                <span className="label-text">Your Role</span>
-              </label>
-              <label className="input-group">
-                <span>Job Title</span>
-                <input type="text" placeholder="Job Title" className="input input-bordered" />
-              </label>
-            </div>
-          </div>
-          <div className='flex flex-row justify-center'>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Contact Number</span>
-              </label>
-              <label className="input-group">
-                <span>Contact</span>
-                <input type="text" placeholder="+911234567890" className="input input-bordered" />
-              </label>
-            </div>
-            <div className="form-control ml-2">
-              <label className="label">
-                <span className="label-text">Github</span>
-              </label>
-              <label className="input-group">
-                <span>Github</span>
-                <input type="text" placeholder="https://github.com/username" className="input input-bordered" />
-              </label>
-            </div>
-            <div className="form-control ml-2">
-              <label className="label">
-                <span className="label-text">LinkedIn</span>
-              </label>
-              <label className="input-group">
-                <span>LinkedIn</span>
-                <input type="text" placeholder="https://linkedin.com/in/username" className="input input-bordered" />
-              </label>
-            </div>
-          </div>
-          <div className='flex flex-row justify-center'>
-            <div className="form-control ">
-              <label className="label">
-                <span className="label-text">Portfolio Website</span>
-              </label>
-              <label className="input-group">
-                <span>Portfolio</span>
-                <input type="text" placeholder="Your Portfolio Website" className="input input-bordered w-full" />
-              </label>
-            </div>
-          </div>
+        <div className={`${activeStep == 0 ? 'mt-14 text-white ' : 'hidden '}`}>
+          <PersonalDetailsFormDesktop/>
+          
 
         </div>
-        <div className={`${activeStep == 1 ? 'mt-14 text-white flex flex-col w-full justify-center' : 'hidden '}`}>
-          <div className="form-control ">
-            <label className="label">
-              <span className="label-text">Summary</span>
-            </label>
-
-            <textarea placeholder="Bio" className="input input-bordered w-full" />
-
-          </div>
+        <div className={`${activeStep == 1 ? 'mt-14 text-white ' : 'hidden '}`}>
+          <SummaryDetailsForm/>
         </div>
         <div className="mt-16 flex justify-between">
           <Button className={cn(buttonVariants({ variant: "outline" }))} onClick={handlePrev} disabled={isFirstStep}>
@@ -182,81 +113,40 @@ const page = () => {
       <div className=' mt-10 md:hidden'>
 
         <div>
-          <ul className="steps  steps-vertical">
-            <li className={`step ${activeStep >= 0 ? 'step-primary text-indigo-400' : ' text-indigo-900'} `}>Personal Details</li>
-            <li className={`${activeStep >= 1 ? 'step step-primary text-indigo-400' : 'hidden'}`}>Summary</li>
-            <li className={` ${activeStep >= 2 ? 'step step-primary text-indigo-400' : 'hidden'}`}>Work History</li>
-            <li className={` ${activeStep >= 3 ? 'step step-primary text-indigo-400' : 'hidden'}`}>Skills</li>
-            <li className={` ${activeStep == 4 ? 'step step-primary text-indigo-400' : 'hidden'}`}>Education</li>
+          <ul>
+            {/* <li className={` ${activeStep == 0 ? ' text-white' : ' hidden'} `}><Badge>Personal Details</Badge></li> */}
+            <div className={` ${activeStep == 0 ? ' flex flex-col mx-auto justify-center' : ' hidden'} `}>
+              <User2 className='text-white mx-auto justify-center items-center'/>
+              <div className='text-white mx-auto justify-center items-center text-sm mt-3'>Personal Details</div>
+            </div>
+            <div className={` ${activeStep == 1 ? ' flex flex-col mx-auto justify-center' : ' hidden'} `}>
+              <Newspaper className='text-white mx-auto justify-center items-center'/>
+              <div className='text-white mx-auto justify-center items-center text-sm mt-3'>Summary</div>
+            </div>
+            <div className={` ${activeStep == 2 ? ' flex flex-col mx-auto justify-center' : ' hidden'} `}>
+              <Briefcase className='text-white mx-auto justify-center items-center'/>
+              <div className='text-white mx-auto justify-center items-center text-sm mt-3'>Work History</div>
+            </div>
+            <div className={` ${activeStep == 3 ? ' flex flex-col mx-auto justify-center' : ' hidden'} `}>
+              <Code className='text-white mx-auto justify-center items-center'/>
+              <div className='text-white mx-auto justify-center items-center text-sm mt-3'>Skills</div>
+            </div>
+            <div className={` ${activeStep == 4 ? ' flex flex-col mx-auto justify-center' : ' hidden'} `}>
+              <School className='text-white mx-auto justify-center items-center'/>
+              <div className='text-white mx-auto justify-center items-center text-sm mt-3'>Education</div>
+            </div>
           </ul>
         </div>
-        <div className={`${activeStep == 0 ? ' text-white justify-center px-2 max-w-xs flex flex-col ' : 'hidden '}`}>
+        <div className={`${activeStep == 0 ? ' text-white justify-center px-2 max-w-xs flex flex-col mt-4' : 'hidden '}`}>
 
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Your Name</span>
-            </label>
-            <input type="text" placeholder="Name here" className="input input-bordered" />
-            
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Your Email</span>
-            </label>
-            <input type="text" placeholder="info@site.com" className="input input-bordered" />
-            
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Your Role</span>
-            </label>
-            <input type="text" placeholder="Job Title" className="input input-bordered" />
-            
-          </div>
-
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Contact Number</span>
-            </label>
-            <input type="text" placeholder="+911234567890" className="input input-bordered" />
-            
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Github</span>
-            </label>
-            <input type="text" placeholder="https://github.com/username" className="input input-bordered" />
-            
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">LinkedIn</span>
-            </label>
-            <input type="text" placeholder="https://linkedin.com/in/username" className="input input-bordered" />
-          </div>
-
-
-          <div className="form-control ">
-            <label className="label">
-              <span className="label-text">Portfolio Website</span>
-            </label>
-            <input type="text" placeholder="Your Portfolio Website" className="input input-bordered w-full" />
-            
-          </div>
+          <PersonalDetailsFormMobile />
 
 
         </div>
         <div className={`${activeStep == 1 ? ' text-white justify-center' : 'hidden '}`}>
-          <div className="form-control ">
-            <label className="label">
-              <span className="label-text">Summary</span>
-            </label>
-
-            <textarea placeholder="Bio" className="input input-bordered w-full" />
-
-          </div>
+          <SummaryDetailsForm/>
         </div>
-        <div className="mt-16 flex justify-between">
+        <div className="mt-16 flex justify-between mb-4">
           <Button className={cn(buttonVariants({ variant: "outline" }))} onClick={handlePrev} disabled={isFirstStep}>
             Prev
           </Button>
