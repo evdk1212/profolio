@@ -19,7 +19,9 @@ const FormSchema = z.object({
   role: z.string().min(2, {
     message: "Role must be at least 2 characters.",
   }),
-  mobile:z.number().gte(10),
+  mobile:z.string().min(10, {
+    message: "invalid mobile number",
+  }),
   github:z.string().url().optional(),
   linkedin:z.string().url().optional(),
   portfolio:z.string().url().optional()
