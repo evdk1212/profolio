@@ -11,6 +11,7 @@ import { PersonalDetailsFormMobile } from '@/components/ui/forms/mobile/Personal
 import { Badge } from '@/components/shadecnui/badge'
 import { Avatar } from '@radix-ui/react-avatar'
 import { SummaryDetailsForm } from '@/components/ui/forms/summaryDetailsForm'
+import { WorkHistoryFormDektop } from '@/components/ui/forms/desktop/workHistoryFormDesktop'
 
 const page = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -100,6 +101,9 @@ const page = () => {
         </div>
         <div className={`${activeStep == 1 ? 'mt-14 text-white ' : 'hidden '}`}>
           <SummaryDetailsForm/>
+        </div>
+        <div className={`${activeStep == 2 ? 'mt-14 text-white ' : 'hidden '}`}>
+          <WorkHistoryFormDektop/>
         </div>
         <div className="mt-16 flex justify-between">
           <Button className={cn(buttonVariants({ variant: "outline" }))} onClick={handlePrev} disabled={isFirstStep}>

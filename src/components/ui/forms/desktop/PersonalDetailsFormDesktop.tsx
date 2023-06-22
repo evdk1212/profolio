@@ -19,8 +19,8 @@ const FormSchema = z.object({
   role: z.string().min(2, {
     message: "Role must be at least 2 characters.",
   }),
-  mobile: z.string().min(10,{
-    message:"invalid mobile number"
+  mobile: z.string().min(10, {
+    message: "invalid mobile number"
   }),
   github: z.string().url().optional(),
   linkedin: z.string().url().optional(),
@@ -48,23 +48,25 @@ export function PersonalDetailsFormDesktop() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className=" justify-center" >
         <div className="flex flex-row  justify-center">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="This is your legal name. " {...field} />
-                </FormControl>
-                {/* <FormDescription>
+          <div className="w-2/3">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="This is your legal name. " {...field} />
+                  </FormControl>
+                  {/* <FormDescription>
                 This is your public display name.
               </FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="ml-4">
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="ml-4 w-2/3">
             <FormField
               control={form.control}
               name="email"
@@ -85,24 +87,26 @@ export function PersonalDetailsFormDesktop() {
           </div>
         </div>
         <div className="flex flex-row  justify-center mt-4">
-          <FormField
-            control={form.control}
-            name="role"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Job Title</FormLabel>
-                <FormControl>
-                  <Input placeholder="Your Role" {...field} />
-                </FormControl>
-                {/* <FormDescription>
+          <div className="w-2/3">
+            <FormField
+              control={form.control}
+              name="role"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Job Title</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Your Role" {...field} />
+                  </FormControl>
+                  {/* <FormDescription>
                 This is your public display name.
               </FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-          <div className="ml-4">
+          <div className="ml-4 w-2/3">
             <FormField
               control={form.control}
               name="mobile"
@@ -122,23 +126,25 @@ export function PersonalDetailsFormDesktop() {
           </div>
         </div>
         <div className="flex flex-row  justify-center mt-4">
-          <FormField
-            control={form.control}
-            name="github"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Github</FormLabel>
-                <FormControl>
-                  <Input placeholder="https://github.com/username" {...field} />
-                </FormControl>
-                {/* <FormDescription>
+          <div className="w-2/3">
+            <FormField
+              control={form.control}
+              name="github"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Github</FormLabel>
+                  <FormControl>
+                    <Input placeholder="https://github.com/username" {...field} />
+                  </FormControl>
+                  {/* <FormDescription>
                 This is your public display name.
               </FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="ml-4">
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="ml-4 w-2/3">
             <FormField
               control={form.control}
               name="linkedin"
@@ -157,23 +163,23 @@ export function PersonalDetailsFormDesktop() {
             />
           </div>
         </div>
-        <div className="w-1/3 mx-auto mt-4  justify-center items-center">
-        <FormField
-          control={form.control}
-          name="portfolio"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Portfolio Website</FormLabel>
-              <FormControl>
-                <Input placeholder="Link here" {...field} />
-              </FormControl>
-              {/* <FormDescription>
+        <div className="w-2/3 mx-auto mt-4  justify-center items-center">
+          <FormField
+            control={form.control}
+            name="portfolio"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Portfolio Website</FormLabel>
+                <FormControl>
+                  <Input placeholder="Link here" {...field} />
+                </FormControl>
+                {/* <FormDescription>
                 This is your public display name.
               </FormDescription> */}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
         <Button type="submit" className={cn(buttonVariants({ variant: "outline" }))}>Submit</Button>
       </form>
