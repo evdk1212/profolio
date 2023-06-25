@@ -13,6 +13,7 @@ const NavBar= async()=>{
                     <Icons.logo className={"h-8 w-8 sm:h-6 sm:w-6"}/>
                     <p className="hidden text-white text-sm font-medium md:block">FolioMaster</p>
                 </Link>
+                {/* @ts-expect-error Server Component */}
                 <NavMenu />
                 { 
                 session?.user ? (<UserAccountNav user={session.user}/>):
