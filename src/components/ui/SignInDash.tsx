@@ -1,10 +1,11 @@
 import React from 'react'
 import { Icons } from './Icons'
-import Link from 'next/link'
 import { UserAuthForm } from './UserAuthForm'
+import Link from 'next/link'
 
-export const SignIn = () => {
-  return <div className='container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]'>
+export const SignInDash = () => {
+    return <div className='h-screen flex justify-center items-center'>
+    <div className='container bg-white mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px] py-5 rounded'>
     <div className='flex flex-col text-center space-y-2'>
         <Icons.logo className='mx-auto h-6 w-6'/>
         <h1 className='text-2xl font-semibold tracking-tight text-slate-100'>Welcome Back</h1>
@@ -18,6 +19,5 @@ export const SignIn = () => {
         </p>
     </div>
   </div>
-  
-  
+  </div>
 }

@@ -7,7 +7,7 @@ import { cn } from '../lib/utils'
 
 import { MainContentForm } from '@/components/ui/forms/MainContentForm'
 import { getAuthSession } from '../lib/auth'
-import { SignIn } from '@/components/ui/SignIn'
+import { SignInDash } from '@/components/ui/SignInDash'
 
 export default async function  page() {
   const session = await getAuthSession()
@@ -19,7 +19,7 @@ export default async function  page() {
           Go Back
         </Button>
       </Link >
-        <MainContentForm /></> : SignIn()}
+        <MainContentForm /></> : SignInDash()}
 
 
 
