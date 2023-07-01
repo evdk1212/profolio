@@ -65,12 +65,20 @@ const FormSchema = z.object({
         .max(160, {
             message: "Bio must not be longer than 30 characters.",
         }),
+    technologies : z.string().array().optional(),
 
 })
+const options = [
+    { label: "Grapes 🍇", value: "grapes" },
+    { label: "Mango 🥭", value: "mango" },
+    { label: "Strawberry 🍓", value: "strawberry", disabled: true },
+];
+
 export function MainContentForm() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [isLastStep, setIsLastStep] = React.useState(false);
     const [isFirstStep, setIsFirstStep] = React.useState(false);
+    const [selected, setSelected] = React.useState([]);
 
     const handleNext = () => !isLastStep && setActiveStep((cur) => cur + 1);
     const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
@@ -93,7 +101,7 @@ export function MainContentForm() {
         onError: () => {
             return toast({
                 title: 'Something went wrong.',
-                description: 'Your post was not published. Please try again.',
+                description: 'Your Resume was not created. Please try again.',
                 variant: 'destructive',
             })
         },
@@ -105,7 +113,7 @@ export function MainContentForm() {
             router.refresh()
 
             return toast({
-                description: 'Your post has been published.',
+                description: 'Your resume has been created.',
             })
         },
     })
@@ -382,7 +390,7 @@ export function MainContentForm() {
                                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                     <FormControl>
                                                         <SelectTrigger>
-                                                            <SelectValue placeholder="Select a verified email to display" />
+                                                            <SelectValue placeholder="Select a employment type" />
                                                         </SelectTrigger>
                                                     </FormControl>
                                                     <SelectContent>
@@ -452,7 +460,7 @@ export function MainContentForm() {
                                                                     )}
                                                                 >
                                                                     {field.value ? (
-                                                                        format(field.value,"PPP")
+                                                                        format(field.value, "PPP")
                                                                     ) : (
                                                                         <span>Pick a date</span>
                                                                     )}
@@ -495,7 +503,7 @@ export function MainContentForm() {
                                                                     )}
                                                                 >
                                                                     {field.value ? (
-                                                                        format(field.value,"PPP")
+                                                                        format(field.value, "PPP")
                                                                     ) : (
                                                                         <span>Pick a date</span>
                                                                     )}
@@ -521,20 +529,8 @@ export function MainContentForm() {
                                         />
                                     </div>
                                 </div>
-                                <div className="w-1/3 mx-auto mt-4  justify-center items-center">
-                                    <FormField
-                                        control={form.control}
-                                        name="portfolio"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Portfolio Website</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="Link here" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
+                                <div className="mt-4 bg-black">
+                                    
                                 </div>
                             </div>
                             <div className="mt-16 flex justify-between">
@@ -589,104 +585,104 @@ export function MainContentForm() {
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className=" justify-center" >
                             <div className={`${activeStep == 0 ? 'mt-14 text-white ' : 'hidden '}`}>
-                                
-                                    <div >
-                                        <FormField
-                                            control={form.control}
-                                            name="name"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>Name</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="This is your legal name. " {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-                                    <div className=" mt-4">
-                                        <FormField
-                                            control={form.control}
-                                            name="email"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>Email</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="info@iam-deepak.me" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
 
-                                    </div>
-                                
-                                
-                                    <div className="mt-4">
-                                        <FormField
-                                            control={form.control}
-                                            name="role"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>Job Title</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="Your Role" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
+                                <div >
+                                    <FormField
+                                        control={form.control}
+                                        name="name"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Name</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="This is your legal name. " {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                                <div className=" mt-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="email"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Email</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="info@iam-deepak.me" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
 
-                                    <div className="mt-4">
-                                        <FormField
-                                            control={form.control}
-                                            name="mobile"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>Contact Number</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="1234567890" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-                             
-                                
-                                    <div className="mt-4">
-                                        <FormField
-                                            control={form.control}
-                                            name="github"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>Github</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="https://github.com/username" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-                                    <div className="mt-4">
-                                        <FormField
-                                            control={form.control}
-                                            name="linkedin"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>LinkedIn</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="https://linkedin.com/in/username" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-                                
+                                </div>
+
+
+                                <div className="mt-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="role"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Job Title</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="Your Role" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="mt-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="mobile"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Contact Number</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="1234567890" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+
+                                <div className="mt-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="github"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Github</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="https://github.com/username" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                                <div className="mt-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="linkedin"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>LinkedIn</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="https://linkedin.com/in/username" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
                                 <div className="mt-4">
                                     <FormField
                                         control={form.control}
@@ -724,202 +720,202 @@ export function MainContentForm() {
                                 />
                             </div>
                             <div className={`${activeStep == 2 ? 'mt-14 text-white ' : 'hidden '}`}>
-                               
-                                    <div >
-                                        <FormField
-                                            control={form.control}
-                                            name="company"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>Company</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="Company name" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-                                    <div className="mt-4">
-                                        <FormField
-                                            control={form.control}
-                                            name="jobtitle"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>Job Title</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="Job Title" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
 
-                                    </div>
-                                
-                                
-                                    <div className="mt-4">
-                                        <FormField
-                                            control={form.control}
-                                            name="companywebsite"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>Company Website</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="https://company.com" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-
-                                    <div className="mt-4">
-                                        <FormField control={form.control} name="employmenttype" render={({ field }) => (
+                                <div >
+                                    <FormField
+                                        control={form.control}
+                                        name="company"
+                                        render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Employment Type</FormLabel>
-                                                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                    <FormControl>
-                                                        <SelectTrigger>
-                                                            <SelectValue placeholder="Select a verified email to display" />
-                                                        </SelectTrigger>
-                                                    </FormControl>
-                                                    <SelectContent>
-                                                        <SelectItem value="Full-Time">Full-Time</SelectItem>
-                                                        <SelectItem value="Part-Time">Part-Time</SelectItem>
-                                                        <SelectItem value="Contract">Contract</SelectItem>
-                                                        <SelectItem value="Freelance">Freelance</SelectItem>
-                                                        <SelectItem value="Self-Employed">Self-Employed</SelectItem>
-                                                        <SelectItem value="Part-Time">Part-Time</SelectItem>
-                                                        <SelectItem value="Internship">Internship</SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-
+                                                <FormLabel>Company</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="Company name" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
                                             </FormItem>
-                                        )} />
-                                    </div>
-                            
-                                
-                                    <div className="mt-4">
-                                        <FormField
-                                            control={form.control}
-                                            name="country"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>Country</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="Country" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-                                    <div className="mt-4">
-                                        <FormField
-                                            control={form.control}
-                                            name="city"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>City</FormLabel>
-                                                    <FormControl>
-                                                        <Input placeholder="City" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
+                                        )}
+                                    />
+                                </div>
+                                <div className="mt-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="jobtitle"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Job Title</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="Job Title" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
 
-                                    </div>
-                                
-                               
-                                    <div className='mt-4'>
-                                        <FormField
-                                            control={form.control}
-                                            name="from"
-                                            render={({ field }) => (
-                                                <FormItem className="flex flex-col">
-                                                    <FormLabel>From</FormLabel>
-                                                    <Popover>
-                                                        <PopoverTrigger asChild>
-                                                            <FormControl>
-                                                                <Button
-                                                                    variant={"outline"}
-                                                                    className={cn(
-                                                                        "w-[240px] pl-3 text-left font-normal",
-                                                                        !field.value && "text-muted-foreground"
-                                                                    )}
-                                                                >
-                                                                    {field.value ? (
-                                                                        format(field.value, "PPP")
-                                                                    ) : (
-                                                                        <span>Pick a date</span>
-                                                                    )}
-                                                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                                                </Button>
-                                                            </FormControl>
-                                                        </PopoverTrigger>
-                                                        <PopoverContent className="w-auto p-0" align="start">
-                                                            <Calendar
-                                                                mode="single"
-                                                                selected={field.value}
-                                                                onSelect={field.onChange}
-                                                                disabled={(date) =>
-                                                                    date > new Date() || date < new Date("1900-01-01")
-                                                                }
-                                                                initialFocus
-                                                            />
-                                                        </PopoverContent>
-                                                    </Popover>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-                                    <div className="mt-4">
-                                        <FormField
-                                            control={form.control}
-                                            name="to"
-                                            render={({ field }) => (
-                                                <FormItem className="flex flex-col">
-                                                    <FormLabel>To</FormLabel>
-                                                    <Popover>
-                                                        <PopoverTrigger asChild>
-                                                            <FormControl>
-                                                                <Button
-                                                                    variant={"outline"}
-                                                                    className={cn(
-                                                                        "w-[240px] pl-3 text-left font-normal",
-                                                                        !field.value && "text-muted-foreground"
-                                                                    )}
-                                                                >
-                                                                    {field.value ? (
-                                                                        format(field.value, "PPP")
-                                                                    ) : (
-                                                                        <span>Pick a date</span>
-                                                                    )}
-                                                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                                                </Button>
-                                                            </FormControl>
-                                                        </PopoverTrigger>
-                                                        <PopoverContent className="w-auto p-0" align="start">
-                                                            <Calendar
-                                                                mode="single"
-                                                                selected={field.value}
-                                                                onSelect={field.onChange}
-                                                                disabled={(date) =>
-                                                                    date > new Date() || date < new Date("1900-01-01")
-                                                                }
-                                                                initialFocus
-                                                            />
-                                                        </PopoverContent>
-                                                    </Popover>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-                                
+                                </div>
+
+
+                                <div className="mt-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="companywebsite"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Company Website</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="https://company.com" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="mt-4">
+                                    <FormField control={form.control} name="employmenttype" render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Employment Type</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select a employment type" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    <SelectItem value="Full-Time">Full-Time</SelectItem>
+                                                    <SelectItem value="Part-Time">Part-Time</SelectItem>
+                                                    <SelectItem value="Contract">Contract</SelectItem>
+                                                    <SelectItem value="Freelance">Freelance</SelectItem>
+                                                    <SelectItem value="Self-Employed">Self-Employed</SelectItem>
+                                                    <SelectItem value="Part-Time">Part-Time</SelectItem>
+                                                    <SelectItem value="Internship">Internship</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+
+                                        </FormItem>
+                                    )} />
+                                </div>
+
+
+                                <div className="mt-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="country"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Country</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="Country" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                                <div className="mt-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="city"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>City</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="City" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                </div>
+
+
+                                <div className='mt-4'>
+                                    <FormField
+                                        control={form.control}
+                                        name="from"
+                                        render={({ field }) => (
+                                            <FormItem className="flex flex-col">
+                                                <FormLabel>From</FormLabel>
+                                                <Popover>
+                                                    <PopoverTrigger asChild>
+                                                        <FormControl>
+                                                            <Button
+                                                                variant={"outline"}
+                                                                className={cn(
+                                                                    "w-[240px] pl-3 text-left font-normal",
+                                                                    !field.value && "text-muted-foreground"
+                                                                )}
+                                                            >
+                                                                {field.value ? (
+                                                                    format(field.value, "PPP")
+                                                                ) : (
+                                                                    <span>Pick a date</span>
+                                                                )}
+                                                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                                            </Button>
+                                                        </FormControl>
+                                                    </PopoverTrigger>
+                                                    <PopoverContent className="w-auto p-0" align="start">
+                                                        <Calendar
+                                                            mode="single"
+                                                            selected={field.value}
+                                                            onSelect={field.onChange}
+                                                            disabled={(date) =>
+                                                                date > new Date() || date < new Date("1900-01-01")
+                                                            }
+                                                            initialFocus
+                                                        />
+                                                    </PopoverContent>
+                                                </Popover>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                                <div className="mt-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="to"
+                                        render={({ field }) => (
+                                            <FormItem className="flex flex-col">
+                                                <FormLabel>To</FormLabel>
+                                                <Popover>
+                                                    <PopoverTrigger asChild>
+                                                        <FormControl>
+                                                            <Button
+                                                                variant={"outline"}
+                                                                className={cn(
+                                                                    "w-[240px] pl-3 text-left font-normal",
+                                                                    !field.value && "text-muted-foreground"
+                                                                )}
+                                                            >
+                                                                {field.value ? (
+                                                                    format(field.value, "PPP")
+                                                                ) : (
+                                                                    <span>Pick a date</span>
+                                                                )}
+                                                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                                            </Button>
+                                                        </FormControl>
+                                                    </PopoverTrigger>
+                                                    <PopoverContent className="w-auto p-0" align="start">
+                                                        <Calendar
+                                                            mode="single"
+                                                            selected={field.value}
+                                                            onSelect={field.onChange}
+                                                            disabled={(date) =>
+                                                                date > new Date() || date < new Date("1900-01-01")
+                                                            }
+                                                            initialFocus
+                                                        />
+                                                    </PopoverContent>
+                                                </Popover>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
                                 <div className="mt-4">
                                     <FormField
                                         control={form.control}
